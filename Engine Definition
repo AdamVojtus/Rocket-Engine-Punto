@@ -1,0 +1,59 @@
+ENGINE DEFINITION SHEET – IGNIS  
+--------------------------------
+
+GENERAL INFO  
+------------  
+Engine Name: Ignis  
+Engine Type: Pressure-fed, liquid bipropellant rocket engine  
+Cooling: Water-cooled (external)  
+Material: Copper (chamber & nozzle)  
+Test Type: Static fire  
+
+PROPELLANT SYSTEM  
+-----------------  
+Fuel: Methane (CH4)  
+Oxidizer: Gaseous Oxygen (GOX)  
+Mixture Ratio (O/F): 2.8  
+Total Mass Flow Rate: 0.0658 kg/s  
+  
+Fuel Flow Rate (mf): 0.0137 kg/s  
+Oxidizer Flow Rate (mo): 0.0521 kg/s  
+Injector Type: Doublet (impinging)  
+
+INJECTION SYSTEM  
+----------------  
+Injector Type: Doublet impinging  
+Injector Cooling: None (assumed)  
+Number of Elements: TBD  
+Injection Pressure Drop: TBD  
+
+COMBUSTION CHAMBER  
+------------------  
+Chamber Pressure (Pc): 10 bar  
+Thrust: 200 N  
+Characteristic Length (L*): 1.0 m  
+Throat Diameter: 20 mm  
+Chamber Diameter: 60 mm  
+Chamber Length: 100 mm  
+
+NOZZLE  
+------  
+Throat Diameter (Dt): 20 mm  
+Exit Diameter (De): 56 mm  
+Expansion Ratio (Ae/At): 7.84  
+Nozzle Type: Converging-diverging  
+Material: Copper  
+
+COOLING SYSTEM  
+--------------  
+Cooling Type: Water-cooled (external)  
+Cooling Jacket Material: TBD  
+
+NOTES  
+-----  
+Designed for static testing only.  
+Assumes ideal conditions and steady-state operation.  
+Detailed injector and cooling geometry TBD in later iterations.  
+Pressure drop across injectors and feed system not yet defined.  
+
+REVISION: 2025-07-07
