@@ -24,9 +24,7 @@ class ScintillaApp(ctk.CTk):
             self.logo = ctk.CTkImage(light_image=pil_img, dark_image=pil_img, size=(200, 100))
             self.logo_label = ctk.CTkLabel(self, image=self.logo, text="")
             self.logo_label.pack(pady=10)
-        except Exception as e:
-            print(f"DEBUG - Hľadaná cesta: {IMAGE_PATH}")
-            print(f"Chyba: {e}")
+        except:
             self.logo_label = ctk.CTkLabel(self, text="[ Logo Missing ]")
             self.logo_label.pack(pady=10)
 
@@ -45,8 +43,12 @@ class ScintillaApp(ctk.CTk):
         self.status_label = ctk.CTkLabel(self, text="Status: Initializing...", text_color="yellow")
         self.status_label.pack(side="bottom", pady=10)
 
-        if tr.connect_system('COM3', 9600):
-            self.status_label.configure(text="Status: Connected to IGNIS", text_color="green")
+        if tr.connect_system('COM3', 115200):
+            res = tr.inputHandshake()
+            if res == "HELLO_BACK":
+                self.status_label.configure(text="Status: Handshake Successful! Proceed to initialization", text_color="green")
+            else:
+                self.status_label.configure(text=f"Status: No Valid Handshake ({res})", text_color="orange")
         else:
             self.status_label.configure(text="Status: Connection Failed!", text_color="red")
 
@@ -54,13 +56,10 @@ class ScintillaApp(ctk.CTk):
 
     def update_telemetry(self):
         raw_line = tr.get_latest_data()
-        
         if raw_line:
             self.info_label.configure(text=f"RAW: {raw_line}")
-            
             if "Pressure:" in raw_line:
                 self.pressure_label.configure(text=raw_line)
-            
             if "Temp:" in raw_line:
                 self.temp_label.configure(text=raw_line)
 
@@ -68,7 +67,6 @@ class ScintillaApp(ctk.CTk):
 
 def run_login():
     ctk.set_appearance_mode("dark")
-    
     dialog = ctk.CTkInputDialog(text="Type in a password:", title="Login to Scintilla")
     input_password = dialog.get_input()
 
@@ -76,7 +74,7 @@ def run_login():
         app = ScintillaApp()
         app.mainloop()
     else:
-        print("Access Denied: Incorrect Password")
+        print("Access Denied")
 
 if __name__ == "__main__":
     run_login()
